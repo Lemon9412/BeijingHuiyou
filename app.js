@@ -6,9 +6,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var ejs = require('ejs');
+var app = express();
 
 var indexRoute = require("./routes/index/indexRoute.js");
-var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,10 +38,11 @@ var client = require('mongodb').MongoClient;
 client.connect("mongodb://127.0.0.1:27017/huiyou",function(error,database) {
     if(error) throw error;
     //将数据库对象加入到全局执行环境中，以便其他文件调用。
-    global.mongodb = database;
+    global.database = database;
     global.ObjectID = require('mongodb').ObjectID;
+    console.log("连接成功！");
 });
-app.use("/index",indexRoute);
+app.use("/",indexRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
