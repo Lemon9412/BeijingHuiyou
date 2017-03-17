@@ -2,7 +2,6 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
 a {
   color: #00B7FF;
 }
@@ -21,6 +20,7 @@ form {
 button {
   width: 80px;
   height: 30px;
+  float: left;
   margin-right: 200px;
   margin-left: 50px;
 }

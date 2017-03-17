@@ -6,8 +6,20 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css"/>
     <script src="javascripts/jquery-2.1.0.js"></script>
     <script src="javascripts/jquery.form.js"></script>
-    <script src="javascripts/ET_index.js"></script>
-    <script src="javascripts/BUS_index.js"></script>
+    <script>
+        $(document).ready(function () {
+            var options = {
+                url:"/",
+                type:"post",
+                datatype:"json",
+                sucess:function (data) {
+                    alert("提交成功");
+                }
+            };
+            $("#usercers").ajaxForm(options);
+        });
+    </script>
+
 </head>
 <body>
 <form id="usercers">
