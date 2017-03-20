@@ -8,19 +8,7 @@
     <script src="javascripts/jquery-2.1.0.js"></script>
     <script src="javascripts/bootstrap.js" type="text/javascript" charset="utf-8"></script>
     <script src="javascripts/jquery.form.js"></script>
-    <script>
-        $(document).ready(function () {
-            var options = {
-                url: "/add",
-                type: "post",
-                datatype: "json",
-                success: function (data) {
-                    alert("提交成功");
-                }
-            };
-            $("#usercers").ajaxForm(options);
-        });
-    </script>
+
 
 </head>
 <body>
@@ -78,4 +66,17 @@
     <button type="reset">重置</button>
 </form>
 </body>
+<script>
+    $(document).ready(function () {
+        var options = {
+            url: "/add",
+            type: "post",
+            datatype: "json",
+            success: function (data) {
+                console.log("提交成功");
+            }
+        };
+        $("#usercers").ajaxForm(options);
+    });
+</script>
 </html>

@@ -29,7 +29,7 @@ router.post("/", function (req, resp) {
     var collection = database.collection("users");
     collection.insert(info, function (err) {
         if(err){
-            //失败的话给用户个提示
+            alert("提交失败");//失败的话给用户个提示
         }
     });
 });
