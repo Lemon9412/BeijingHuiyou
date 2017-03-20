@@ -8,8 +8,8 @@ var session = require('express-session');
 var ejs = require('ejs');
 var app = express();
 
+var addRoute = require("./routes/add/addRoute.js");
 var indexRoute = require("./routes/index/indexRoute.js");
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,6 +42,7 @@ client.connect("mongodb://127.0.0.1:27017/huiyou",function(error,database) {
     global.ObjectID = require('mongodb').ObjectID;
     console.log("连接成功！");
 });
+app.use("/",addRoute);
 app.use("/",indexRoute);
 
 // catch 404 and forward to error handler
