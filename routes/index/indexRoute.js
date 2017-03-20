@@ -4,9 +4,10 @@
 var express = require("express");
 var router = express.Router();
 
-router.post("/",function(req,resp) {
+router.post("/", function (req, resp) {
     var collection = database.collection("users");
-    var info = collection.find().toArray();
-    resp.send(info);
+    collection.find().toArray(function (err, docs) {
+        resp.send(docs);
+    });
 });
 module.exports = router;

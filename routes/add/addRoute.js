@@ -7,7 +7,7 @@
 var express = require("express");
 var router = express.Router();
 
-router.post("/",function(req,resp) {
+router.post("/", function (req, resp) {
     var name = req.body.name;
     var sex = req.body.sex;
     var birthday = req.body.birthday;
@@ -16,8 +16,21 @@ router.post("/",function(req,resp) {
     var cerName = req.body.cerName;
     var cerday = req.body.cerday;
     var company = req.body.company;
-    var info = ({name:name,sex:sex,birthday:birthday, cerNum:cerNum, IDcard:IDcard, cerName:cerName, cerday:cerday, company:company});
+    var info = ({
+        name: name,
+        sex: sex,
+        birthday: birthday,
+        cerNum: cerNum,
+        IDcard: IDcard,
+        cerName: cerName,
+        cerday: cerday,
+        company: company
+    });
     var collection = database.collection("users");
-    collection.insert(info);
+    collection.insert(info, function (err) {
+        if(err){
+            //失败的话给用户个提示
+        }
+    });
 });
 module.exports = router;
