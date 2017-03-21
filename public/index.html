@@ -92,11 +92,12 @@
                             + '<td><button class="del">删除</button><a href="describe.html?' + data[i]._id + '">详情</a>'
                             + '</td>';
                         document.getElementById("tbody").appendChild(tr);
-                        $(".del").click(function () {
-                            console.log('123');
-                        });
                     }
                 }
+                $(".del").click(function () {
+                    console.log('123');
+                    alert('123');
+                });
             },
             error: function (xhr, type, errorThrown) {
                 //异常处理；
