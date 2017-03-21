@@ -77,40 +77,42 @@
             dataType: "json",
             success: function (data) {
                 console.log(data);
-                for (var i = 1; i <= data.length; i++) {
-                    if (data[i].name == undefined || data[i].name == null || data[i].name == "") {
-                        i++;
-                    } else {
+                for (var i = 0; i < data.length; i++) {
+                    	var j = i+1;
                         var tr = document.createElement("tr");
-                        tr.innerHTML = '<td>' + i + '</td>'
+                        tr.innerHTML = '<td>' + j + '</td>'
                             + '<td>' + data[i].name + '</td>'
                             + '<td>' + data[i].sex + '</td>'
                             + '<td>' + data[i].IDcard + '</td>'
                             + '<td>' + data[i].cerName + '</td>'
                             + '<td>' + data[i].cerNum + '</td>'
-                            + '<td><img src="http://qrcode.shuogesha.com/qrcode?pixel=100_100&content=describe.html?' + data[i]._id + '" width="100px" height="100px" /></p></td>'
-                            + '<td><button class="del" onclick="delete()">删除</button><a href="describe.html?' + data[i]._id + '">详情</a>'
+                            + '<td><img src="http://qrcode.shuogesha.com/qrcode?pixel=100_100&content=describe.html?' + data[i]._id + '" width="80px" height="80px" /></p></td>'
+                            + '<td><button class="del">删除</button><a href="describe.html?' + data[i]._id + '">详情</a>'
                             + '</td>';
                         document.getElementById("tbody").appendChild(tr);
-                    }
+
                 }
+                $(".del").click(function () {
+                    $.ajax({
+                        url:"/",
+						type:"post",
+						data:{"info_id":data[0]._id},
+						datatype:"post",
+						sucess:function () {
+							/*$(".del").parents("tr").remove();*/
+                        }
+
+					});
+					/*$.post("/",{info_id:data[0]._id},function () {
+
+                    });*/
+                });
             },
             error: function (xhr, type, errorThrown) {
                 //异常处理；
                 console.log(type);
             }
         });
-
-    });
-
-    $(".del").click(function () {
-        alert("111");
-        /*$.ajax({
-         url: "/",
-         type: "post",
-         dataType: "json",
-
-         })*/
     });
 </script>
 </html>
