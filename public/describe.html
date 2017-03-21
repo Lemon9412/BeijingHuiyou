@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>详情页</title>
-		<link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css"/>
-		<script src="javascripts/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
-		<script src="javascripts/bootstrap.js" type="text/javascript" charset="utf-8"></script>
-	</head>
-	<body>
-		<div class="container">
-			<div class="col-md-12" style="margin: 30px auto;">
-				<div class="table-responsive">
-					<table class="table table-bordered" id="table">
+<head>
+    <meta charset="UTF-8">
+    <title>详情页</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css"/>
+    <script src="javascripts/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascripts/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div class="container">
+    <div class="col-md-12" style="margin: 30px auto;">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="table">
 
-					</table>
-				</div>
-			</div>
-		</div>
-	</body>
-	<script>
-		$(function () {
-		    $.post("/describe",{user_id:document.URL.split("?")[1]},function (data) {
-		        console.log(data.sex);
-				var table = document.getElementById("table");
-				table.innerHTML = '<tr><td>姓名：</td><td>'+data.name+'</td></tr>'
-					+'<tr><td>性别：</td><td>'+data.sex+'</td></tr>'
-					+'<tr><td>出生日期：</td><td>'+data.birthday+'</td></tr>'
-					+'<tr><td>证书编号：</td><td>'+data.cerNum+'</td></tr>'
-					+'<tr><td>身份证号：</td><td>'+data.IDcard+'</td></tr>'
-					+'<tr><td>职业（工种）及等级：</td><td>'+data.cerName+'</td></tr>'
-					+'<tr><td>办证日期：</td><td>'+data.cerday+'</td></tr>'
-					+'<tr><td>发证单位：</td><td>'+data.company+'</td></tr>';
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $(function () {
+        $.post("/describe", {user_id: document.URL.split("?")[1]}, function (data) {
+            var table = document.getElementById("table");
+            table.innerHTML = '<tr><td>姓名：</td><td>' + data[0].name + '</td></tr>'
+                + '<tr><td>性别：</td><td>' + data[0].sex + '</td></tr>'
+                + '<tr><td>出生日期：</td><td>' + data[0].birthday + '</td></tr>'
+                + '<tr><td>证书编号：</td><td>' + data[0].cerNum + '</td></tr>'
+                + '<tr><td>身份证号：</td><td>' + data[0].IDcard + '</td></tr>'
+                + '<tr><td>职业（工种）及等级：</td><td>' + data[0].cerName + '</td></tr>'
+                + '<tr><td>办证日期：</td><td>' + data[0].cerday + '</td></tr>'
+                + '<tr><td>发证单位：</td><td>' + data[0].company + '</td></tr>';
 
-            });
         });
-	</script>
+    });
+</script>
 </html>
