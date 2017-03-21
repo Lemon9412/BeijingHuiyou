@@ -87,8 +87,8 @@
                             + '<td>' + data[i].IDcard + '</td>'
                             + '<td>' + data[i].cerName + '</td>'
                             + '<td>' + data[i].cerNum + '</td>'
-                            + '<td><img src="http://qrcode.shuogesha.com/qrcode?pixel=100_100&content=http://www.baidu.com" width="100px" height="100px" /></p></td>'
-                            + '<td><a class="del">删除</a><a href="#">详情</a>'
+                            + '<td><img src="http://qrcode.shuogesha.com/qrcode?pixel=100_100&content=describe.html?'+data[i]._id+'" width="100px" height="100px" /></p></td>'
+                            + '<td><button class="del" onclick="delete()">删除</button><a href="describe.html?'+data[i]._id+'">详情</a>'
                             + '</td>';
                         document.getElementById("tbody").appendChild(tr);
                     }
@@ -101,14 +101,15 @@
         });
 
     });
+
     $(".del").click(function () {
         alert("111");
-        $.ajax({
+        /*$.ajax({
             url: "/",
             type: "post",
             dataType: "json",
 
-        })
+        })*/
     });
 	</script>
 </html>
