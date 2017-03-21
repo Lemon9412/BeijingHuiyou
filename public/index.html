@@ -98,8 +98,10 @@
 						type:"post",
 						data:{"info_id":data[0]._id},
 						datatype:"post",
-						sucess:function () {
-							/*$(".del").parents("tr").remove();*/
+                        success:function () {
+                            alert("删除成功");
+                            console.log($(event.target).parents("tr"));
+							$(event.target).parents("tr").remove();
                         }
 
 					});
