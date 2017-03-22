@@ -6,7 +6,8 @@ var router = express.Router();
 
 router.post("/", function (req, resp) {
     var collection = database.collection("users");
-    collection.remove({_id:ObjectID(req.body.info_id)});
+    console.log(req.body.info_id);
+    collection.remove({IDcard: req.body.info_id});
     collection.find().toArray(function (err, docs) {
         resp.send(docs);
     });

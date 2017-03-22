@@ -72,8 +72,10 @@
             url: "/add",
             type: "post",
             datatype: "json",
-            success: function (state) {
-                alert("提交成功");
+            success: function (data, stutas) {
+                if (data == 1) {
+                    alert("提交成功");
+                }
             }
         };
         $("#usercers").ajaxForm(options);
