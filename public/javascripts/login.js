@@ -28,6 +28,13 @@ $(document).ready(function () {
             $("#alert_password").slideUp(700);
         }
     })
-
+    $("#btn_login").click(function () {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        console.log(username,password);
+        $.post("/login", {username:username,password:password}, function (data, statu) {
+            window.location.href = "index.html";
+        });
+    });
 
 });
