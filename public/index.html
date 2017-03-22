@@ -93,21 +93,18 @@
 
                 }
                 $(".del").click(function () {
+                    console.log(data[i]._id);
                     $.ajax({
                         url:"/",
-						type:"post",
-						data:{"info_id":data[0]._id},
-						datatype:"post",
+                        type:"post",
+                        data:{"info_id":data[i]._id},
+                        datatype:"post",
                         success:function () {
                             alert("删除成功");
-                            console.log($(event.target).parents("tr"));
-							$(event.target).parents("tr").remove();
+                            location.href = "/";
                         }
 
-					});
-					/*$.post("/",{info_id:data[0]._id},function () {
-
-                    });*/
+                    });
                 });
             },
             error: function (xhr, type, errorThrown) {
