@@ -18,6 +18,21 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', ejs.__express);
 app.set('view engine', 'jade');
 
+
+//权限拦截器开始
+app.use(function (req, res, next) {
+    if (!req.session.userId && (req.originalUrl.indexOf("login") < 0
+        //&& req.originalUrl.indexOf("web")<0
+        && req.originalUrl.indexOf("js") < 0 && req.originalUrl.indexOf("css") < 0)) {
+        res.redirect("/login.html");
+        res.end();
+        return;
+    }else{
+        next();
+    }
+
+});
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
