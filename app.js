@@ -11,6 +11,7 @@ var app = express();
 var addRoute = require("./routes/add/addRoute.js");
 var indexRoute = require("./routes/index/indexRoute.js");
 var describeRoute = require("./routes/describe/describeRoute.js");
+var loginRoute = require("./routes/login/loginRoute.js");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,6 +44,7 @@ client.connect("mongodb://127.0.0.1:27017/huiyou",function(error,database) {
     global.ObjectID = require('mongodb').ObjectID;
     console.log("连接成功！");
 });
+app.use("/login",loginRoute);
 app.use("/describe",describeRoute);
 app.use("/add", addRoute);
 app.use("/", indexRoute);

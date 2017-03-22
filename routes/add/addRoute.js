@@ -27,9 +27,11 @@ router.post("/", function (req, resp) {
         company: company
     });
     var collection = database.collection("users");
-    collection.insert(info, function (err) {
+    collection.insert(info, function (err,state) {
         if(err){
             alert("提交失败");//失败的话给用户个提示
+        } else {
+            resp.send({state:1});
         }
     });
 });
