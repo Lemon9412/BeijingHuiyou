@@ -6,12 +6,23 @@ var router = express.Router();
 
 
 router.post("/", function (req, resp) {
-    var username = req.body.username;
-    var password = req.body.password;
-    console.log(username,password);
+
+    var param = JSON.parse(req.body.param);
+    var username = param.username;
+    var password = param.password;
+
     var collection = database.collection("login");
-    collection.find({username:username,password:password}).next(function (err, docs) {
-        resp.send(docs);
+    var cursor = collection.find({username:username}).limit(1);
+    cursor.next(function (error,user) {
+        if(user != null) {
+            if(user.password != password) {
+                resp.send({state:1});
+            } else {
+                resp.send({state:2});
+            }
+        } else {
+            resp.send({state:0});
+        }
     });
 });
 module.exports = router;

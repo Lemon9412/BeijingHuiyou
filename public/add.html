@@ -72,8 +72,8 @@
             url: "/add",
             type: "post",
             datatype: "json",
-            success: function (data, stutas) {
-                if (data == 1) {
+            success: function (state) {
+                if (state == 1) {
                     alert("提交成功");
                 }
             }

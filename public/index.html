@@ -100,8 +100,7 @@
                         datatype: "post",
                         success: function () {
                             alert("删除成功");
-                            console.log($(event.target).parents("tr"));
-                            $(event.target).parents("tr").remove();
+                            location.href="/";
                         }
 
                     });

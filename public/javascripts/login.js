@@ -29,11 +29,18 @@ $(document).ready(function () {
         }
     })
     $("#btn_login").click(function () {
-        var username = $("#username").val();
-        var password = $("#password").val();
-        console.log(username,password);
-        $.post("/login", {username:username,password:password}, function (data, statu) {
-            window.location.href = "index.html";
+        var options = {
+            username:$("#username").val(),
+            password:$("#password").val()
+        };
+        $.post("/login", {param:JSON.stringify(options)}, function (data) {
+            if(data.state==0) {
+                alert("用户名错误");
+            } else if (data.state==1) {
+                alert("密码错误");
+            } else {
+                window.location.href="index.html";
+            }
         });
     });
 
