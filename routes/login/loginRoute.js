@@ -4,7 +4,6 @@
 var express = require("express");
 var router = express.Router();
 
-
 router.post("/", function (req, resp) {
     var param = JSON.parse(req.body.param);
     var username = param.username;
@@ -16,9 +15,7 @@ router.post("/", function (req, resp) {
             if(user.password != password) {
                 resp.send({state:1});
             } else {
-                resp.cookie('username',username,{expires:new Date(Date.now()+1800000)});
                 req.session.curUser = user;
-                console.log(req.session.curUser);
                 resp.send({state:2});
             }
         } else {
