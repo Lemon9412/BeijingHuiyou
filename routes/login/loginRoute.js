@@ -18,6 +18,7 @@ router.post("/", function (req, resp) {
             } else {
                 resp.cookie('username',username,{expires:new Date(Date.now()+1800000)});
                 req.session.curUser = user;
+                console.log(req.session.curUser);
                 resp.send({state:2});
             }
         } else {
@@ -25,7 +26,7 @@ router.post("/", function (req, resp) {
         }
     });
 });
-router.post("/index",function(req,resp) {
+/*router.post("/index",function(req,resp) {
     resp.send(req.session.curUser);
-});
+});*/
 module.exports = router;

@@ -20,16 +20,22 @@ app.set('view engine', 'jade');
 
 
 //权限拦截器开始
-app.use(function (req, res, next) {
-    if (!req.session.userId && (req.originalUrl.indexOf("login") < 0
+app.use("/",function (req, res, next) {
+    console.log(req.originalUrl);
+    if(req.originalUrl.indexOf("login")||req.session.curUser||req.originalUrl=='/'||req.originalUrl=='/login') {
+        next();
+    } else {
+        return res.render('login',{title:'login',url:req.originalUrl});
+    }
+    /*if (!req.session.userId && (req.originalUrl.indexOf("login") < 0
         //&& req.originalUrl.indexOf("web")<0
         && req.originalUrl.indexOf("js") < 0 && req.originalUrl.indexOf("css") < 0)) {
-        res.redirect("/login.html");
+        res.redirect("/index.html");
         res.end();
         return;
     }else{
         next();
-    }
+    }*/
 
 });
 
