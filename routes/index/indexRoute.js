@@ -5,11 +5,14 @@ var express = require("express");
 var router = express.Router();
 
 router.post("/", function (req, resp) {
-    var collection = database.collection("users");
-    collection.remove({cerNum: req.body.info_id});
-    collection.find().toArray(function (err, docs) {
-        resp.send(docs);
-    });
-    console.log(req.session.curUser);
+    if (req.session.curUser) {
+        var collection = database.collection("users");
+        collection.remove({cerNum: req.body.info_id});
+        collection.find().toArray(function (err, docs) {
+            resp.send(docs);
+        });
+    } else {
+        resp.send("-1");
+    }
 });
 module.exports = router;
