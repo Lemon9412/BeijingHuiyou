@@ -55,7 +55,6 @@
                 <td>序号</td>
                 <td>姓名</td>
                 <td>性别</td>
-                <td>身份证号码</td>
                 <td>证书名称</td>
                 <td>证书编号</td>
                 <td>二维码</td>
@@ -76,18 +75,23 @@
             type: "post",
             dataType: "json",
             success: function (data) {
-                console.log(data);
                 for (var i = 0; i < data.length; i++) {
                     var j = i + 1;
                     var tr = document.createElement("tr");
+                    if(data[i].sex=='male') {
+                        var sex = '男';
+                    } else if(data[i].sex == 'female') {
+                        var sex = '女';
+                    } else {
+                        var sex = '';
+                    }
                     tr.innerHTML = '<td>' + j + '</td>'
                         + '<td>' + data[i].name + '</td>'
-                        + '<td>' + data[i].sex + '</td>'
-                        + '<td>' + data[i].IDcard + '</td>'
+                        + '<td>' + sex + '</td>'
                         + '<td>' + data[i].cerName + '</td>'
                         + '<td id="cerNum">' + data[i].cerNum + '</td>'
                         + '<td><img src="http://qrcode.shuogesha.com/qrcode?pixel=100_100&content=describe.html?' + data[i]._id + '" width="80px" height="80px" /></p></td>'
-                        + '<td><button class="del">删除</button><a href="describe.html?' + data[i]._id + '">详情</a>'
+                        + '<td><button class="del">删除</button><a href="describe.html?'+data[i]._id+ '">详情</a>'
                         + '</td>';
                     document.getElementById("tbody").appendChild(tr);
 

@@ -23,8 +23,15 @@
         $.post("/describe", {user_id: document.URL.split("?")[1]}, function (data) {
             console.log(data);
             var table = document.getElementById("table");
+            if(data.sex=='male') {
+                var sex = '男';
+			} else if(data.sex == 'female') {
+                var sex = '女';
+			} else {
+                var sex = '';
+			}
             table.innerHTML = '<tr><td>姓名：</td><td>' + data.name + '</td></tr>'
-                + '<tr><td>性别：</td><td>' + data.sex + '</td></tr>'
+                + '<tr><td>性别：</td><td>' + sex + '</td></tr>'
                 + '<tr><td>出生日期：</td><td>' + data.birthday + '</td></tr>'
                 + '<tr><td>证书编号：</td><td>' + data.cerNum + '</td></tr>'
                 + '<tr><td>身份证号：</td><td>' + data.IDcard + '</td></tr>'

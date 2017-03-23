@@ -19,25 +19,7 @@ app.engine('.html', ejs.__express);
 app.set('view engine', 'jade');
 
 
-//权限拦截器开始
-app.use("/",function (req, res, next) {
-    console.log(req.originalUrl);
-    if(req.originalUrl.indexOf("login")||req.session.curUser||req.originalUrl=='/'||req.originalUrl=='/login') {
-        next();
-    } else {
-        return res.render('login',{title:'login',url:req.originalUrl});
-    }
-    /*if (!req.session.userId && (req.originalUrl.indexOf("login") < 0
-        //&& req.originalUrl.indexOf("web")<0
-        && req.originalUrl.indexOf("js") < 0 && req.originalUrl.indexOf("css") < 0)) {
-        res.redirect("/index.html");
-        res.end();
-        return;
-    }else{
-        next();
-    }*/
 
-});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -47,6 +29,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 app.use(session({
   cookie:{maxAge:1800000},
     name:"mySession",
@@ -54,6 +38,26 @@ app.use(session({
     secret:'keyboard cat',
     saveUninitialized:false
 }));
+
+//权限拦截器开始
+app.use("/",function (req, res, next) {
+    console.log(req.originalUrl);
+    if(req.session.curUser||req.originalUrl=='/login') {
+        next();
+    } else {
+        return res.render('login',{title:'login',url:req.originalUrl});
+    }
+    /*if (!req.session.userId && (req.originalUrl.indexOf("login") < 0
+     //&& req.originalUrl.indexOf("web")<0
+     && req.originalUrl.indexOf("js") < 0 && req.originalUrl.indexOf("css") < 0)) {
+     res.redirect("/index.html");
+     res.end();
+     return;
+     }else{
+     next();
+     }*/
+
+});
 
 //设定mongodb的配置项信息
 var client = require('mongodb').MongoClient;

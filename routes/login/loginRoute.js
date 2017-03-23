@@ -26,7 +26,5 @@ router.post("/", function (req, resp) {
         }
     });
 });
-/*router.post("/index",function(req,resp) {
-    resp.send(req.session.curUser);
-});*/
+
 module.exports = router;
